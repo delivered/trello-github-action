@@ -7,8 +7,8 @@ jobs:
     steps:
     - name: Confirm Link
       id: confirm
-      uses: delivered/trello-github-action@v1
+      uses: delivered/trello-github-action
       with:
         link-regex: 'https://trello.com'
     - name: Get the output time
-      run: echo "The time was ${{ steps.confirm.outputs.time }}"
+      run: echo "The time was ${{ steps.confirm.outputs.time }}.  Link: ${{steps.confirm.outputs."
