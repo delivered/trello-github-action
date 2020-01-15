@@ -14,7 +14,7 @@ async function run() {
       
         const token = core.getInput('repo-token');
         const octokit = new github.GitHub(token);
-        const prComments = await octokit.issues.listComments(github.context.issue())
+        const prComments = await octokit.issues.listComments(github.context.issue);
       
         console.log(prComments);
       } catch (error) {
