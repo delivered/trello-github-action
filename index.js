@@ -16,6 +16,9 @@ async function run() {
         const token = core.getInput('repo-token');
         const octokit = new github.GitHub(token);
         const payload = github.context.payload;
+
+        console.log(payload);
+
         const prComments = await octokit.issues.listComments({
             owner: payload.organization.login,
             repo: payload.repository.name,
