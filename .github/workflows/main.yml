@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  confirm-link:
+    runs-on: ubuntu-latest
+    name: This action will look for a link matching a regEx (eg, http://trello.com) in PR.
+    steps:
+    - name: Confirm Link
+      id: confirm
+      uses: delivered/trello-github-action@v1
+      with:
+        link-regex: 'https://trello.com'
+    - name: Get the output time
+      run: echo "The time was ${{ steps.confirm.outputs.time }}"
