@@ -10,12 +10,17 @@ async function run() {
         const time = (new Date()).toTimeString();
         
         core.setOutput("time", time);
-        core.setOutput("link", linkRegEx);
+        core.setOutput("link", linkRegExp);
         core.setOutput("time", false);
       
         const token = core.getInput('repo-token');
         const octokit = new github.GitHub(token);
-        const prComments = await octokit.issues.listComments(github.context.issue);
+        const payload = github.context.payload;
+        const prComments = await octokit.issues.listComments({
+            owner: payload.organization.login,
+            repo: payload.repository.name,
+            issue_numer: payload.pull_request.number
+        });
       
         const commentsWithLinks = prComments.data.filter(d => linkRegExp.exec(d.body).length > 0).map(i => linkRegExp.exec(d.body)[0])
 
