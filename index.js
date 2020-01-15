@@ -10,7 +10,7 @@ async function run() {
         const time = (new Date()).toTimeString();
         
         core.setOutput("time", time);
-        core.setOutput("link", linkRegEx);
+        core.setOutput("link", linkRegExInput);
         core.setOutput("time", false);
       
         const token = core.getInput('repo-token');
