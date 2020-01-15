@@ -12,7 +12,7 @@ try {
   core.setOutput("time", false);
 
   const payload = github.context.payload;
-  const prComments = github.issue_comments.get({
+  const prComments = github.issues.listComments({
     owner: payload.organization.login,
     repo: payload.repository.name,
     issue_numer: payload.pull_request.number
@@ -20,5 +20,6 @@ try {
 
   console.log(prComments);
 } catch (error) {
-  core.setFailed(error.message);
+    console.log(error);
+    core.setFailed(error.message);
 }
