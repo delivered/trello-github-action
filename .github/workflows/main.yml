@@ -1,5 +1,6 @@
-on: [pull_request]
-
+on: 
+  pull_request:
+    types: [created, edited]
 jobs:
   confirm-link:
     runs-on: ubuntu-latest
