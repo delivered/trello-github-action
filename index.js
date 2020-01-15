@@ -12,7 +12,9 @@ try {
   core.setOutput("time", false);
 
   const payload = github.context.payload;
-  const prComments = github.issues.listComments({
+  const token = core.getInput('repo-token');
+  const octokit = new github.GitHub(token);
+  const prComments = octokit.issues.listComments({
     owner: payload.organization.login,
     repo: payload.repository.name,
     issue_numer: payload.pull_request.number
