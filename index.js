@@ -26,7 +26,7 @@ async function run() {
             issue_number: payload.pull_request.number
         });
       
-        const commentsWithLinks = prComments.data.filter(d => linkRegExp.exec(d.body).length > 0).map(i => linkRegExp.exec(d.body)[0])
+        const commentsWithLinks = prComments.data.filter(d => linkRegExp.exec(d.body).length > 0).map(i => linkRegExp.exec(i.body)[0])
 
         console.log('all:')
         console.log(prComments);
