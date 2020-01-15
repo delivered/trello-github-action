@@ -12,13 +12,13 @@ try {
   core.setOutput("time", false);
 
   const payload = github.context.payload;
-  const pr = github.pulls.get({
+  const prComments = github.issue_comments.get({
     owner: payload.organization.login,
     repo: payload.repository.name,
-    pull_number: payload.pull_request.number
+    issue_numer: payload.pull_request.number
   })
 
-  console.log(pr);
+  console.log(prComments);
 
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context, undefined, 2)
