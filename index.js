@@ -17,12 +17,13 @@ async function run() {
         const octokit = new github.GitHub(token);
         const payload = github.context.payload;
 
+        console.log('payload:');
         console.log(payload);
 
         const prComments = await octokit.issues.listComments({
             owner: payload.organization.login,
             repo: payload.repository.name,
-            issue_numer: payload.pull_request.number
+            issue_number: payload.pull_request.number
         });
       
         const commentsWithLinks = prComments.data.filter(d => linkRegExp.exec(d.body).length > 0).map(i => linkRegExp.exec(d.body)[0])
