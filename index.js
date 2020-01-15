@@ -4,8 +4,9 @@ const github = require('@actions/github');
 async function run() {
     try {
         // `who-to-greet` input defined in action metadata file
-        const linkRegEx = core.getInput('link-regex');
-        console.log(`Checking for links: ${linkRegEx}!`);
+        const linkRegExInput = core.getInput('link-regex');
+        const linkRegExp = new RegExp(linkRegExInput)
+        console.log(`Checking for links: ${linkRegExInput}!`);
         const time = (new Date()).toTimeString();
         
         core.setOutput("time", time);
@@ -16,7 +17,13 @@ async function run() {
         const octokit = new github.GitHub(token);
         const prComments = await octokit.issues.listComments(github.context.issue);
       
+        const commentsWithLinks = prComments.data.filter(d => linkRegExp.exec(d.body).length > 0)
+
+        console.log('all:')
         console.log(prComments);
+        console.log('matches:')
+        console.log(commentsWithLinks);
+
       } catch (error) {
           console.log(error);
           core.setFailed(error.message);
