@@ -14,11 +14,7 @@ try {
   const payload = github.context.payload;
   const token = core.getInput('repo-token');
   const octokit = new github.GitHub(token);
-  const prComments = octokit.issues.listComments({
-    owner: payload.organization.login,
-    repo: payload.repository.name,
-    issue_numer: payload.pull_request.number
-  })
+  const prComments = await octokit.issues.listComments(payload.issue())
 
   console.log(prComments);
 } catch (error) {
