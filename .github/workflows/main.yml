@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Confirm Link
       id: confirm
-      uses: delivered/trello-github-action/@my-first-pr
+      uses: delivered/trello-github-action/@MM-first-pr
       with:
         link-regex: 'https://trello.com'
     - name: Get the output time
