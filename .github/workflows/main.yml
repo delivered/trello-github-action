@@ -11,5 +11,3 @@ jobs:
       with:
         link-regex: '(https:\/\/trello.com[^\)]*)'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Get the output time
-      run: echo "The time was ${{ steps.confirm.outputs.time }}.  Link ${{steps.confirm.outputs.link}}"
