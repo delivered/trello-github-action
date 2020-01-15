@@ -19,9 +19,6 @@ try {
   })
 
   console.log(prComments);
-
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context, undefined, 2)
 } catch (error) {
   core.setFailed(error.message);
 }
