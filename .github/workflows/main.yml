@@ -1,6 +1,6 @@
 on: 
   pull_request:
-    types: [created, edited]
+    types: [created, issue_comment, edited]
 jobs:
   confirm-link:
     runs-on: ubuntu-latest
