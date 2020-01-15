@@ -11,8 +11,15 @@ try {
   core.setOutput("link", linkRegEx);
   core.setOutput("time", false);
 
+  const payload = github.context.payload;
+  github.pulls.get({
+    owner: payload.organization.login,
+    repo: payload.repository.name,
+    pull_number: payload.pull_request.number
+  })
+
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  const payload = JSON.stringify(github.context, undefined, 2)
   console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
