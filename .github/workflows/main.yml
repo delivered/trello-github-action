@@ -3,7 +3,7 @@ on: [pull_request]
 jobs:
   confirm-link:
     runs-on: ubuntu-latest
-    name: This action will look for a link matching a regEx (eg, http://trello.com) in Pull Request.
+    name: Ensure Trello link present as attachment.
     steps:
     - name: Confirm Link
       id: confirm
