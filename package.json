@@ -1,0 +1,24 @@
+{
+  "name": "trello-github-action",
+  "version": "1.0.0",
+  "description": "Github actions that interact with Trello",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delivered/trello-github-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/delivered/trello-github-action/issues"
+  },
+  "homepage": "https://github.com/delivered/trello-github-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.1",
+    "@actions/github": "^2.0.1"
+  }
+}

@@ -1,0 +1,12 @@
+name: 'Confirm Trello link included on Pull Request'
+description: 'Confirm Trello link included on Pull Request'
+inputs:
+  trello-url: 
+    description: 'URL to use reg ex search for'
+    default: 'https://trello.com'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'node12'
+  main: 'index.js'
