@@ -3,14 +3,10 @@ description: 'Confirm Trello link included on Pull Request'
 inputs:
   link-regex: 
     description: 'URL to use reg ex search for'
-    default: 'https://trello.com'
+    default: '(https:\/\/trello.com[^\)]*)'
 outputs:
-  link:
-    description: 'Link that was found'
-  found:
-    description: 'Whether a link was found'
-  time: # id of output
-    description: 'The time we greeted you'
+  msg:
+    description: 'output of action'
 runs:
   using: 'node12'
   main: 'index.js'

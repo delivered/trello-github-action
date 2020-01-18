@@ -1,14 +1,16 @@
-on: [pull_request]
-
+on: 
+  issue_comment:
+    types: [created, edited]
+  pull_request:
+    types: [edited, opened, synchronize, reopened]
 jobs:
   confirm-link:
     runs-on: ubuntu-latest
-    name: This action will look for a link matching a regEx (eg, http://trello.com) in PR.
+    name: Ensure Trello link present as attachment.
     steps:
     - name: Confirm Link
       id: confirm
-      uses: delivered/trello-github-action/@7e9cf84
+      uses: delivered/trello-github-action/@MM-first-pr
       with:
-        link-regex: 'https://trello.com'
-    - name: Get the output time
-      run: echo "The time was ${{ steps.confirm.outputs.time }}.  Link ${{steps.confirm.outputs.link}}"
+        link-regex: '(https:\/\/trello.com[^\)]*)'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
