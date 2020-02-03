@@ -22,9 +22,9 @@ async function run() {
         };
 
         const pull = await octokit.issues.get(issuesArgs);
-        console.log(`pr body: ${pull.body}`);
+        console.log(`pr body: ${pull.data.body}`);
 
-        const bodyMatches = linkRegExp.exec(pull.body);
+        const bodyMatches = linkRegExp.exec(pull.data.body);
         if(bodyMatches) matchedStrings.push(bodyMatches[0]);
         
         if(matchedStrings.length < 1) {
