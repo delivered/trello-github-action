@@ -11,13 +11,12 @@ async function run() {
 
         console.log(`Checking for links: ${linkRegExInput}!`);
 
-        const time = (new Date()).toTimeString();      
         const token = core.getInput('repo-token');
         const octokit = new github.GitHub(token);
         const payload = github.context.payload;
 
         const issuesArgs = {
-            owner: payload.organization.login,
+            owner: (payload.organization || payload.owner).login,
             repo: payload.repository.name,
             issue_number: payload.pull_request.number
         };
