@@ -15,11 +15,14 @@ async function run() {
         const octokit = new github.GitHub(token);
         const payload = github.context.payload;
 
-        const issuesArgs = {
-            owner: (payload.organization || payload.repository.owner).login,
-            repo: payload.repository.name,
-            issue_number: payload.pull_request.number
-        };
+        // personal repos have no org
+        const owner = (payload.organization || payload.repository.owner).login;
+        const repo = payload.repository.name;
+
+        // issue events (like create comment) supply #issue instead od #pull_request
+        const issue_number = (payload.pull_request || payload.issue).number;
+        
+        const issuesArgs = { owner, repo, issue_number };
 
         const pull = await octokit.issues.get(issuesArgs);
         console.log(`pr body: ${pull.data.body}`);
