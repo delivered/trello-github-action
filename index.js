@@ -15,11 +15,11 @@ async function run() {
         const octokit = new github.GitHub(token);
         const payload = github.context.payload;
 
-        // personal repos have no org
+        // personal repos have no org - allow for those as well as team ones
         const owner = (payload.organization || payload.repository.owner).login;
         const repo = payload.repository.name;
 
-        // issue events (like create comment) supply #issue instead od #pull_request
+        // issue events (like create comment) supply #issue instead of #pull_request - handle both
         const issue_number = (payload.pull_request || payload.issue).number;
         
         const issuesArgs = { owner, repo, issue_number };
@@ -45,14 +45,12 @@ async function run() {
             console.log(prComments.data.map(i => i.body));
         }
 
-
         console.log('matches:')
         console.log(matchedStrings);
 
         core.setOutput('msg', `Found ${matchedStrings.length} with matching links`)
 
         if(matchedStrings.length === 0) core.setFailed(`unable to find any comments matching link ${linkRegExInput}`)
-
     } catch (error) {
           console.log(error);
           core.setFailed(error.message);
