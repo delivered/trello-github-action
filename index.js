@@ -16,7 +16,7 @@ async function run() {
         const payload = github.context.payload;
 
         const issuesArgs = {
-            owner: (payload.organization || payload.owner).login,
+            owner: (payload.organization || payload.repository.owner).login,
             repo: payload.repository.name,
             issue_number: payload.pull_request.number
         };
