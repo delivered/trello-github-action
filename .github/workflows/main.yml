@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Confirm Link
       id: confirm
-      uses: delivered/trello-github-action/@MM-first-pr
+      uses: delivered/trello-github-action/@master
       with:
         link-regex: '(https:\/\/trello.com[^\)]*)'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
