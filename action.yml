@@ -1,9 +1,11 @@
 name: 'Confirm Trello link included on Pull Request'
 description: 'Confirm Trello link included on Pull Request'
 inputs:
-  link-regex: 
+  link-regex:
     description: 'URL to use reg ex search for'
     default: '(https:\/\/trello.com[^\)]*)'
+  repo-token:
+    description: 'GITHUB_TOKEN secret'
 outputs:
   msg:
     description: 'output of action'
